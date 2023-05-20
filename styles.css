@@ -128,7 +128,6 @@ table {
   border-spacing: 0;
 }
 
-
 /*Custom CSS*/
 html {
   font-size: 16px;
@@ -142,9 +141,22 @@ body {
   text-align: center;
 }
 
-.main {
-  margin: 0 auto;
+.main,
+.people {
+  margin: 0 auto 100px auto;
   max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.people {
+  margin: 0 auto;
+  max-width: 600px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 h1 {
@@ -155,17 +167,22 @@ caption {
   font-size: 1.5rem;
 }
 
-img {
+p {
+  font-size: 1rem;
+}
+
+img,
+video {
   object-fit: contain;
   height: 400px;
 }
 
-input[type=text] {
+input[type="text"] {
   text-align: center;
   transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
+input[type="text"]:focus {
   width: 30%;
   border: 3px solid #555;
 }
