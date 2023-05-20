@@ -156,7 +156,7 @@ body {
   max-width: 600px;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 h1 {
