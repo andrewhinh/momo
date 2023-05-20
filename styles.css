@@ -144,7 +144,7 @@ body {
 .main,
 .people {
   margin: 0 auto 100px auto;
-  max-width: 1200px;
+  max-width: min(95%, 1200px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -159,16 +159,20 @@ body {
   justify-content: center;
 }
 
+/* Increasing font for smaller devices:
+- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#calculating-preferred-value-parameters-based-on-specific-starting-and-ending-points
+- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#using-negative-viewport-value-for-fluid-sizing
+*/
 h1 {
-  font-size: 2rem;
+  font-size: clamp(2rem, -8vw + 9rem, 6rem);
 }
-
-caption {
-  font-size: 1.5rem;
+h2 {
+  font-size: clamp(1.5rem, -6vw + 6.75rem, 4.5rem);
 }
-
-p {
-  font-size: 1rem;
+p,
+input[type="text"],
+button {
+  font-size: clamp(1rem, -4vw + 4.5rem, 3rem);
 }
 
 img,
@@ -179,10 +183,8 @@ video {
 
 input[type="text"] {
   text-align: center;
-  transition: width 0.4s ease-in-out;
 }
 
 input[type="text"]:focus {
-  width: 30%;
   border: 3px solid #555;
 }
