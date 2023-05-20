@@ -2,7 +2,7 @@ const main_div = document.querySelector('.main');
 const input_text = main_div.querySelector('input');
 const tellme_button = main_div.querySelector('button');
 const people_div = main_div.querySelector('.people');
-const family = ["andrew", "ethan"];
+const family = ["andrew", "ethan", "mom"];
 
 function greet(name) {
   let person_div = document.createElement('div');
