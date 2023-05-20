@@ -164,15 +164,15 @@ body {
 - https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#using-negative-viewport-value-for-fluid-sizing
 */
 h1 {
-  font-size: clamp(2rem, -8vw + 9rem, 6rem);
+  font-size: clamp(2rem, -20vw + 19.5rem, 12rem);
 }
 h2 {
-  font-size: clamp(1.5rem, -6vw + 6.75rem, 4.5rem);
+  font-size: clamp(1.5rem, -15vw + 14.625rem, 9rem);
 }
 p,
 input[type="text"],
 button {
-  font-size: clamp(1rem, -4vw + 4.5rem, 3rem);
+  font-size: clamp(1rem, -10vw + 9.75rem, 6rem);
 }
 
 img,
