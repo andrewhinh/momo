@@ -1,0 +1,22 @@
+{
+  "name": "momo",
+  "version": "1.0.0",
+  "description": "Talk with Momo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewhinh/momo.git"
+  },
+  "author": "Andrew Hinh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewhinh/momo/issues"
+  },
+  "homepage": "https://github.com/andrewhinh/momo#readme",
+  "dependencies": {
+    "openai": "^3.2.1"
+  }
+}
