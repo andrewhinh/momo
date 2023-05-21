@@ -134,7 +134,7 @@ html {
 }
 
 body {
-  font-family: "Verdana", sans-serif;
+  font-family: "Verdana", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.5;
   color: #333;
   background-color: #efefef;
