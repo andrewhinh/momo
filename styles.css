@@ -133,18 +133,34 @@ html {
   font-size: 16px;
 }
 
-:root.Dark {
-  --border-btn: 1px solid #cfcfcf;
-  --color-base-bg: #333;
-  --color-base-text: #efefef;
-  --color-btn-bg: #565656;
-}
-
-:root.Light {
+:root {
   --border-btn: 1px solid #565656;
   --color-base-bg: #efefef;
   --color-base-text: #333;
   --color-btn-bg: #cfcfcf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root.dark {
+    --border-btn: 1px solid #cfcfcf;
+    --color-base-bg: #333;
+    --color-base-text: #efefef;
+    --color-btn-bg: #565656;
+  }
+}
+
+:root.light {
+  --border-btn: 1px solid #565656;
+  --color-base-bg: #efefef;
+  --color-base-text: #333;
+  --color-btn-bg: #cfcfcf;
+}
+
+:root.dark {
+  --border-btn: 1px solid #cfcfcf;
+  --color-base-bg: #333;
+  --color-base-text: #efefef;
+  --color-btn-bg: #565656;
 }
 
 body,

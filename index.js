@@ -36,9 +36,9 @@ function greet(name) {
 
 function setTheme() {
   const root = document.documentElement;
-  const newTheme = root.className === 'Dark' ? 'Light' : 'Dark';
-  root.className = newTheme;
-  const displayTheme = root.className === 'Dark' ? 'Light' : 'Dark';
+  const setTheme = root.className === 'dark' ? 'light' : 'dark';
+  root.className = setTheme;
+  const displayTheme = root.className === 'dark' ? 'Light' : 'Dark';
   main_div.querySelector('.theme-name').textContent = displayTheme;
 }
 
