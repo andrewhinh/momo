@@ -138,6 +138,7 @@ html {
   --color-base-bg: #efefef;
   --color-base-text: #333;
   --color-btn-bg: #cfcfcf;
+  --display-theme-name: "Dark";
 }
 
 @media (prefers-color-scheme: dark) {
@@ -146,6 +147,7 @@ html {
     --color-base-bg: #333;
     --color-base-text: #efefef;
     --color-btn-bg: #565656;
+    --display-theme-name: "Light";
   }
 }
 

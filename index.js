@@ -39,7 +39,7 @@ function setTheme() {
   const setTheme = root.className === 'dark' ? 'light' : 'dark';
   root.className = setTheme;
   const displayTheme = root.className === 'dark' ? 'Light' : 'Dark';
-  main_div.querySelector('.theme-name').textContent = displayTheme;
+  main_div.querySelector('.display-theme-name').textContent = displayTheme;
 }
 
 // Event listeners
