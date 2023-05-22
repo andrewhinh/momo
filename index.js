@@ -1,9 +1,12 @@
+// Helper variables
 const main_div = document.querySelector('.main');
+const theme_button = main_div.querySelector('.theme-button');
 const input_text = main_div.querySelector('input');
-const tellme_button = main_div.querySelector('button');
+const tellme_button = main_div.querySelector('.tellme-button');
 const people_div = main_div.querySelector('.people');
 const family = ["andrew", "ethan", "mom"];
 
+// Helper functions
 function greet(name) {
   let person_div = document.createElement('div');
   let say_hi = document.createElement('p');
@@ -31,10 +34,21 @@ function greet(name) {
   main_div.appendChild(people_div);
 }
 
+function setTheme() {
+  const root = document.documentElement;
+  const newTheme = root.className === 'Dark' ? 'Light' : 'Dark';
+  root.className = newTheme;
+  const displayTheme = root.className === 'Dark' ? 'Light' : 'Dark';
+  main_div.querySelector('.theme-name').textContent = displayTheme;
+}
+
+// Event listeners
 tellme_button.addEventListener('click', () => {
   let username = input_text.value;
   greet(username);
 });
+
+theme_button.addEventListener('click', setTheme);
 
 /*
 const { Configuration, OpenAIApi } = require("openai");

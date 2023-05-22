@@ -133,12 +133,39 @@ html {
   font-size: 16px;
 }
 
+:root.Dark {
+  --border-btn: 1px solid #cfcfcf;
+  --color-base-bg: #333;
+  --color-base-text: #efefef;
+  --color-btn-bg: #565656;
+}
+
+:root.Light {
+  --border-btn: 1px solid #565656;
+  --color-base-bg: #efefef;
+  --color-base-text: #333;
+  --color-btn-bg: #cfcfcf;
+}
+
+body,
+input,
+.theme-button,
+.tellme-button {
+  color: var(--color-base-text);
+}
+
 body {
   font-family: "Verdana", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.5;
-  color: #333;
-  background-color: #efefef;
   text-align: center;
+  background-color: var(--color-base-bg);
+}
+
+input,
+.theme-button,
+.tellme-button {
+  background-color: var(--color-btn-bg);
+  border: var(--border-btn);
 }
 
 .main,
@@ -157,6 +184,18 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.theme-button-container {
+  align-self: flex-end;
+}
+
+.theme-button {
+  margin-top: 1rem;
 }
 
 /* Increasing font for smaller devices:
@@ -186,5 +225,5 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  border: 3px solid #555;
+  border: 3px solid var(--border-btn);
 }
