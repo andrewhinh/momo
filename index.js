@@ -9,6 +9,7 @@ const family = ["andrew", "ethan", "mom"];
 // Helper functions
 function greet(name) {
   let person_div = document.createElement('div');
+  person_div.classname = "person";
   let say_hi = document.createElement('p');
   function hey(name) { return `Hello, ${name}!`; }
   let hi_gif = document.createElement('video');

@@ -173,7 +173,8 @@ input,
 }
 
 body {
-  font-family: "Verdana", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Verdana", system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   line-height: 1.5;
   text-align: center;
   background-color: var(--color-base-bg);
@@ -186,8 +187,7 @@ input,
   border: var(--border-btn);
 }
 
-.main,
-.people {
+.main {
   margin: 0 auto 50px auto;
   max-width: min(95%, 1200px);
   display: flex;
@@ -197,11 +197,17 @@ input,
 }
 
 .people {
-  margin: 0 auto;
-  max-width: 600px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  resize: both;
+  overflow: auto;
+  grid-template: repeat(1, 1fr) / repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 button:hover {
