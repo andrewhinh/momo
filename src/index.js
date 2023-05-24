@@ -12,36 +12,44 @@ const Person = (name) => ({ name });
 
 const Momo = (() => {
   const family = ["andrew", "ethan", "mom"];
-  const sayHey = (name) => `Hey ${name}!`;
-  const greet = (person) => {
-    const assetsPath = "assets/";
-    const peopleDiv = mainDiv.querySelector(".people");
-    const personDiv = document.createElement("div");
-    personDiv.classname = "person";
-    const sayHi = document.createElement("p");
-    const hiGif = document.createElement("video");
-
-    if (family.includes(person.name.toLowerCase())) {
-      sayHi.innerHTML = sayHey(
-        person.name[0].toUpperCase() + person.name.slice(1).toLowerCase()
-      );
-      hiGif.src = `${assetsPath}momo-bored.mp4`;
-    } else {
-      sayHi.innerHTML = sayHey("stranger");
-      hiGif.src = `${assetsPath}momo-happy.mp4`;
+  const sayHey = (name, isBored) => {
+    if (isBored) {
+      return `Hey ${name}.`;
     }
+    return `Hey ${name}!`;
+  };
+  const greet = (person) => {
+    if (person.name.length !== 0) {
+      const assetsPath = "assets/";
+      const peopleDiv = mainDiv.querySelector(".people");
+      const personDiv = document.createElement("div");
+      personDiv.classname = "person";
+      const sayHi = document.createElement("p");
+      const hiGif = document.createElement("video");
 
-    hiGif.alt = "Momo Gif";
-    hiGif.autoplay = true;
-    hiGif.controls = true;
-    hiGif.loop = true;
-    hiGif.muted = true;
-    hiGif.type = "video/mp4";
+      if (family.includes(person.name.toLowerCase())) {
+        sayHi.innerHTML = sayHey(
+          person.name[0].toUpperCase() + person.name.slice(1).toLowerCase(),
+          true
+        );
+        hiGif.src = `${assetsPath}momo-bored.mp4`;
+      } else {
+        sayHi.innerHTML = sayHey("stranger", false);
+        hiGif.src = `${assetsPath}momo-happy.mp4`;
+      }
 
-    personDiv.appendChild(sayHi);
-    personDiv.appendChild(hiGif);
-    peopleDiv.appendChild(personDiv);
-    mainDiv.appendChild(peopleDiv);
+      hiGif.alt = "Momo Gif";
+      hiGif.autoplay = true;
+      hiGif.controls = true;
+      hiGif.loop = true;
+      hiGif.muted = true;
+      hiGif.type = "video/mp4";
+
+      personDiv.appendChild(sayHi);
+      personDiv.appendChild(hiGif);
+      peopleDiv.appendChild(personDiv);
+      mainDiv.appendChild(peopleDiv);
+    }
   };
   return { greet };
 })();
