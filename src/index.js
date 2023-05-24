@@ -1,34 +1,34 @@
 // Imports
-import './style.css';
+import "./style.css";
 
 // Helper variables
-const main_div = document.querySelector('.main');
-const theme_button = main_div.querySelector('.theme-button');
-const input_text = main_div.querySelector('input');
-const tellme_button = main_div.querySelector('.tellme-button');
+const main_div = document.querySelector(".main");
+const theme_button = main_div.querySelector(".theme-button");
+const input_text = main_div.querySelector("input");
+const tellme_button = main_div.querySelector(".tellme-button");
 
 // Helper functions
-const Person = (name) => {
-  return { name };
-};
+const Person = (name) => ({ name });
 
 const Momo = (() => {
   const family = ["andrew", "ethan", "mom"];
   const say_hey = (name) => `Hey ${name}!`;
   const greet = (person) => {
-    let assets_path = "assets/";
-    let people_div = main_div.querySelector('.people');
-    let person_div = document.createElement('div');
+    const assets_path = "assets/";
+    const people_div = main_div.querySelector(".people");
+    const person_div = document.createElement("div");
     person_div.classname = "person";
-    let say_hi = document.createElement('p');
-    let hi_gif = document.createElement('video');
+    const say_hi = document.createElement("p");
+    const hi_gif = document.createElement("video");
 
     if (family.includes(person.name.toLowerCase())) {
-      say_hi.innerHTML = say_hey(person.name[0].toUpperCase() + person.name.slice(1).toLowerCase());
-      hi_gif.src = assets_path + "momo-bored.mp4"
+      say_hi.innerHTML = say_hey(
+        person.name[0].toUpperCase() + person.name.slice(1).toLowerCase()
+      );
+      hi_gif.src = `${assets_path}momo-bored.mp4`;
     } else {
       say_hi.innerHTML = say_hey("stranger");
-      hi_gif.src = assets_path + "momo-happy.mp4"
+      hi_gif.src = `${assets_path}momo-happy.mp4`;
     }
 
     hi_gif.alt = "Momo Gif";
@@ -42,26 +42,26 @@ const Momo = (() => {
     person_div.appendChild(hi_gif);
     people_div.appendChild(person_div);
     main_div.appendChild(people_div);
-  }
+  };
   return { greet };
 })();
 
 function setTheme() {
-  let root = document.documentElement;
-  let setTheme = root.className === 'dark' ? 'light' : 'dark';
+  const root = document.documentElement;
+  const setTheme = root.className === "dark" ? "light" : "dark";
   root.className = setTheme;
-  let displayTheme = root.className === 'dark' ? 'Light' : 'Dark';
-  main_div.querySelector('.display-theme-name').textContent = displayTheme;
+  const displayTheme = root.className === "dark" ? "Light" : "Dark";
+  main_div.querySelector(".display-theme-name").textContent = displayTheme;
 }
 
 // Event listeners
-tellme_button.addEventListener('click', () => {
-  let name = input_text.value;
-  let person = Person(name);
+tellme_button.addEventListener("click", () => {
+  const name = input_text.value;
+  const person = Person(name);
   Momo.greet(person);
 });
 
-theme_button.addEventListener('click', setTheme);
+theme_button.addEventListener("click", setTheme);
 
 /*
 const { Configuration, OpenAIApi } = require("openai");
