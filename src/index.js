@@ -4,7 +4,8 @@ import "./style.css";
 // Helper variables
 const mainDiv = document.querySelector(".main");
 const themeButton = mainDiv.querySelector(".theme-button");
-const inputText = mainDiv.querySelector("input");
+const form = mainDiv.querySelector("form");
+const inputText = mainDiv.querySelector("#name");
 const tellMeButton = mainDiv.querySelector(".tellme-button");
 
 // Helper functions
@@ -63,6 +64,18 @@ function setTheme() {
 }
 
 // Event listeners
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
+inputText.addEventListener("input", (event) => {
+  if (inputText.validity.valueMissing) {
+    inputText.setCustomValidity("WHAT'S YOUR NAME?!");
+  } else {
+    inputText.setCustomValidity("");
+  }
+});
+
 tellMeButton.addEventListener("click", () => {
   const name = inputText.value;
   const person = Person(name);
