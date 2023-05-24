@@ -7,37 +7,40 @@ const people_div = main_div.querySelector('.people');
 const family = ["andrew", "ethan", "mom"];
 
 // Helper functions
-function Person(name) {
-  this.name = name;
-}
+const Person = (name) => {
+  return { name };
+};
 
-function greet(person) {
-  let person_div = document.createElement('div');
-  person_div.classname = "person";
-  let say_hi = document.createElement('p');
-  function hey(name) { return `Hello, ${name}!`; }
-  let hi_gif = document.createElement('video');
+const Momo = (() => {
+  const say_hey = (name) => `Hey ${name}!`;
+  const greet = (person) => {
+    let person_div = document.createElement('div');
+    person_div.classname = "person";
+    let say_hi = document.createElement('p');
+    let hi_gif = document.createElement('video');
 
-  if (family.includes(person.name.toLowerCase())) {
-    say_hi.innerHTML = hey(person.name[0].toUpperCase() + person.name.slice(1));
-    hi_gif.src = "./assets/momo-happy.mp4";
-  } else {
-    say_hi.innerHTML = hey("stranger");
-    hi_gif.src = "./assets/momo-bored.mp4";
+    if (family.includes(person.name.toLowerCase())) {
+      say_hi.innerHTML = say_hey(person.name[0].toUpperCase() + person.name.slice(1));
+      hi_gif.src = "./assets/momo-happy.mp4";
+    } else {
+      say_hi.innerHTML = say_hey("stranger");
+      hi_gif.src = "./assets/momo-bored.mp4";
+    }
+
+    hi_gif.alt = "Momo Gif";
+    hi_gif.autoplay = true;
+    hi_gif.controls = true;
+    hi_gif.loop = true;
+    hi_gif.muted = true;
+    hi_gif.type = "video/mp4";
+
+    person_div.appendChild(say_hi);
+    person_div.appendChild(hi_gif);
+    people_div.appendChild(person_div);
+    main_div.appendChild(people_div);
   }
-
-  hi_gif.alt = "Momo Gif";
-  hi_gif.autoplay = true;
-  hi_gif.controls = true;
-  hi_gif.loop = true;
-  hi_gif.muted = true;
-  hi_gif.type = "video/mp4";
-
-  person_div.appendChild(say_hi);
-  person_div.appendChild(hi_gif);
-  people_div.appendChild(person_div);
-  main_div.appendChild(people_div);
-}
+  return { greet };
+})();
 
 function setTheme() {
   const root = document.documentElement;
@@ -50,8 +53,8 @@ function setTheme() {
 // Event listeners
 tellme_button.addEventListener('click', () => {
   let name = input_text.value;
-  let person = new Person(name);
-  greet(person);
+  let person = Person(name);
+  Momo.greet(person);
 });
 
 theme_button.addEventListener('click', setTheme);
