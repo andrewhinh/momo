@@ -1,9 +1,8 @@
 // Imports
 import './style.css';
-import happy_video from './assets/momo-happy.mp4';
-import bored_video from './assets/momo-bored.mp4';
 
 // Helper variables
+const global_assets_path = "assets/";
 const main_div = document.querySelector('.main');
 const theme_button = main_div.querySelector('.theme-button');
 const input_text = main_div.querySelector('input');
@@ -25,11 +24,11 @@ const Momo = (() => {
     let hi_gif = document.createElement('video');
 
     if (family.includes(person.name.toLowerCase())) {
-      say_hi.innerHTML = say_hey(person.name[0].toUpperCase() + person.name.slice(1));
-      hi_gif.src = happy_video;
+      say_hi.innerHTML = say_hey(person.name[0].toUpperCase() + person.name.slice(1).toLowerCase());
+      hi_gif.src = global_assets_path + "momo-bored.mp4"
     } else {
       say_hi.innerHTML = say_hey("stranger");
-      hi_gif.src = bored_video;
+      hi_gif.src = global_assets_path + "momo-happy.mp4"
     }
 
     hi_gif.alt = "Momo Gif";
