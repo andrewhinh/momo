@@ -1,12 +1,11 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'production', // development
     entry: './src/index.js',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, '.'),
+    devServer: {
+        static: '.',
     },
-    mode: 'production',
     module: {
         rules: [
             {
@@ -16,7 +15,12 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
-              },
+            },
         ],
+    },
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, '.'),
+        publicPath: '/', // for dev server
     },
 };
