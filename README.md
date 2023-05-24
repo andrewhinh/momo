@@ -1,3 +1,0 @@
-# momo
-
-Talk with Momo
