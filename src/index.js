@@ -1,5 +1,7 @@
-// Import stylesheets
+// Imports
 import './style.css';
+import happy_video from './assets/momo-happy.mp4';
+import bored_video from './assets/momo-bored.mp4';
 
 // Helper variables
 const main_div = document.querySelector('.main');
@@ -24,10 +26,10 @@ const Momo = (() => {
 
     if (family.includes(person.name.toLowerCase())) {
       say_hi.innerHTML = say_hey(person.name[0].toUpperCase() + person.name.slice(1));
-      hi_gif.src = "./src/assets/momo-happy.mp4";
+      hi_gif.src = happy_video;
     } else {
       say_hi.innerHTML = say_hey("stranger");
-      hi_gif.src = "./src/assets/momo-bored.mp4";
+      hi_gif.src = bored_video;
     }
 
     hi_gif.alt = "Momo Gif";

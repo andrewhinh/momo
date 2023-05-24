@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'production', // development
+    mode: 'development', // development
     entry: './src/index.js',
     devServer: {
-        static: '.',
+        static: './dist',
     },
     module: {
         rules: [
@@ -16,11 +16,15 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
             },
+            {
+                test: /\.mp4$/,
+                use: 'file-loader?name=videos/[name].[ext]',
+            }
         ],
     },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, '.'),
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist'),
         publicPath: '/', // for dev server
     },
 };
