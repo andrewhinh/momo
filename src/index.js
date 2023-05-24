@@ -2,13 +2,10 @@
 import './style.css';
 
 // Helper variables
-const global_assets_path = "assets/";
 const main_div = document.querySelector('.main');
 const theme_button = main_div.querySelector('.theme-button');
 const input_text = main_div.querySelector('input');
 const tellme_button = main_div.querySelector('.tellme-button');
-const people_div = main_div.querySelector('.people');
-const family = ["andrew", "ethan", "mom"];
 
 // Helper functions
 const Person = (name) => {
@@ -16,8 +13,11 @@ const Person = (name) => {
 };
 
 const Momo = (() => {
+  const family = ["andrew", "ethan", "mom"];
   const say_hey = (name) => `Hey ${name}!`;
   const greet = (person) => {
+    let assets_path = "assets/";
+    let people_div = main_div.querySelector('.people');
     let person_div = document.createElement('div');
     person_div.classname = "person";
     let say_hi = document.createElement('p');
@@ -25,10 +25,10 @@ const Momo = (() => {
 
     if (family.includes(person.name.toLowerCase())) {
       say_hi.innerHTML = say_hey(person.name[0].toUpperCase() + person.name.slice(1).toLowerCase());
-      hi_gif.src = global_assets_path + "momo-bored.mp4"
+      hi_gif.src = assets_path + "momo-bored.mp4"
     } else {
       say_hi.innerHTML = say_hey("stranger");
-      hi_gif.src = global_assets_path + "momo-happy.mp4"
+      hi_gif.src = assets_path + "momo-happy.mp4"
     }
 
     hi_gif.alt = "Momo Gif";
@@ -47,10 +47,10 @@ const Momo = (() => {
 })();
 
 function setTheme() {
-  const root = document.documentElement;
-  const setTheme = root.className === 'dark' ? 'light' : 'dark';
+  let root = document.documentElement;
+  let setTheme = root.className === 'dark' ? 'light' : 'dark';
   root.className = setTheme;
-  const displayTheme = root.className === 'dark' ? 'Light' : 'Dark';
+  let displayTheme = root.className === 'dark' ? 'Light' : 'Dark';
   main_div.querySelector('.display-theme-name').textContent = displayTheme;
 }
 
