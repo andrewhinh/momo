@@ -24,10 +24,10 @@ const Momo = (() => {
 
     if (family.includes(person.name.toLowerCase())) {
       say_hi.innerHTML = say_hey(person.name[0].toUpperCase() + person.name.slice(1));
-      hi_gif.src = "assets/momo-happy.mp4";
+      hi_gif.src = "./src/assets/momo-happy.mp4";
     } else {
       say_hi.innerHTML = say_hey("stranger");
-      hi_gif.src = "assets/momo-bored.mp4";
+      hi_gif.src = "./src/assets/momo-bored.mp4";
     }
 
     hi_gif.alt = "Momo Gif";
