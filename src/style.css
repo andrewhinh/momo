@@ -211,6 +211,10 @@ video {
   fill: var(--color-btn-bg);
 }
 
+.arrow.next > svg {
+  transform: rotate(180deg);
+}
+
 button:hover,
 .indicator:not(.active):hover {
   /* indicate clickable with highlight */
