@@ -235,7 +235,8 @@ h2 {
 label,
 p,
 input[type="text"],
-button {
+button,
+.error {
   font-size: clamp(1rem, -10vw + 9.75rem, 6rem);
 }
 
@@ -255,4 +256,10 @@ input[type="text"]:focus {
 
 input:invalid {
   border: 3px dashed red;
+}
+
+.error {
+  color: white;
+  background-color: #900;
+  margin: 0.5rem auto;
 }
