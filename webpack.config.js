@@ -13,7 +13,7 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpe?g|svg)$/i,
+        test: /\.(jpg)$/i,
         type: "asset/resource",
       },
       {

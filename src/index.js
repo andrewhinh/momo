@@ -3,12 +3,15 @@
 // Imports
 import "./style.css";
 
-function importAll(r) {
-  return r.keys().map(r);
-}
-const images = importAll(require.context("./assets", false, /\.(jpg)$/));
-
 // Helper variables
+const assetsPath = "./assets/";
+const images = [
+  `${assetsPath}0.jpg`,
+  `${assetsPath}1.jpg`,
+  `${assetsPath}2.jpg`,
+  `${assetsPath}3.jpg`,
+  `${assetsPath}4.jpg`,
+];
 let timer = null;
 let currentImage = 0; // index of the currently displayed image in the images array
 
@@ -85,7 +88,7 @@ const Momo = (() => {
   };
   const greet = (person) => {
     if (person.name.length !== 0) {
-      const assetsPath = "assets/";
+      
       const peopleDiv = mainDiv.querySelector(".people");
       const personDiv = document.createElement("div");
       personDiv.classname = "person";
