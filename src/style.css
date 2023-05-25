@@ -180,7 +180,7 @@ body {
 }
 
 .main {
-  margin: 0 auto 50px auto;
+  margin: 100px auto;
   max-width: min(95%, 1200px);
   display: flex;
   flex-direction: column;
@@ -209,6 +209,10 @@ video {
 
 .arrow:hover {
   fill: var(--color-btn-bg);
+}
+
+.arrow.next > svg {
+  transform: rotate(180deg);
 }
 
 button:hover,
