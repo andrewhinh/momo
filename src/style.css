@@ -134,7 +134,8 @@ html {
 }
 
 :root {
-  --border-btn: 1px solid #565656;
+  --border-color: #565656;
+  --border-btn: 1px solid var(--border-color);
   --color-base-bg: #efefef;
   --color-base-text: #333;
   --color-btn-bg: #cfcfcf;
@@ -143,7 +144,7 @@ html {
 
 @media (prefers-color-scheme: dark) {
   :root.dark {
-    --border-btn: 1px solid #cfcfcf;
+    --border-color: #cfcfcf;
     --color-base-bg: #333;
     --color-base-text: #efefef;
     --color-btn-bg: #565656;
@@ -152,14 +153,12 @@ html {
 }
 
 :root.light {
-  --border-btn: 1px solid #565656;
   --color-base-bg: #efefef;
   --color-base-text: #333;
   --color-btn-bg: #cfcfcf;
 }
 
 :root.dark {
-  --border-btn: 1px solid #cfcfcf;
   --color-base-bg: #333;
   --color-base-text: #efefef;
   --color-btn-bg: #565656;
@@ -180,13 +179,6 @@ body {
   background-color: var(--color-base-bg);
 }
 
-input,
-.theme-button,
-.tellme-button {
-  background-color: var(--color-btn-bg);
-  border: var(--border-btn);
-}
-
 .main {
   margin: 0 auto 50px auto;
   max-width: min(95%, 1200px);
@@ -196,22 +188,48 @@ input,
   gap: 1rem;
 }
 
-.people {
-  display: grid;
-  resize: both;
-  overflow: auto;
-  grid-template: repeat(1, 1fr) / repeat(auto-fit, minmax(400px, 1fr));
+img,
+video {
+  object-fit: contain;
+  height: 400px;
+}
+
+.carousel-controls,
+.indicator-tray,
+.image-carousel {
+  display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
-.person {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.arrow {
+  width: 3rem;
+  fill: var(--color-base-text);
 }
 
-button:hover {
+.arrow:hover {
+  fill: var(--color-btn-bg);
+}
+
+button:hover,
+.indicator:not(.active):hover {
+  /* indicate clickable with highlight */
+  box-shadow: 0 0 3rem 1rem var(--border-color) inset;
   cursor: pointer;
+}
+
+.indicator {
+  display: inline-block; /* Ensures the indicators are on the same line */
+  height: 3rem; /* Sets the height of the indicators */
+  width: 3rem; /* Sets the width of the indicators */
+  border-radius: 50%; /* Ensures the indicators are circular */
+  background-color: var(--color-btn-bg); /* Sets the color of the indicators */
+  transition: opacity 0.5s ease-in-out; /* Cleaner transitions */
+  /*opacity: 0.5; /* Indicators default to semi-transparent and are revealed by class changing */
+}
+
+.indicator.active {
+  background-color: var(--color-base-text);
 }
 
 .theme-button-container {
@@ -222,28 +240,11 @@ button:hover {
   margin-top: 1rem;
 }
 
-/* Increasing font for smaller devices:
-- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#calculating-preferred-value-parameters-based-on-specific-starting-and-ending-points
-- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#using-negative-viewport-value-for-fluid-sizing
-*/
-h1 {
-  font-size: clamp(2rem, -20vw + 19.5rem, 12rem);
-}
-h2 {
-  font-size: clamp(1.5rem, -15vw + 14.625rem, 9rem);
-}
-label,
-p,
-input[type="text"],
-button,
-.error {
-  font-size: clamp(1rem, -10vw + 9.75rem, 6rem);
-}
-
-img,
-video {
-  object-fit: contain;
-  height: 400px;
+input,
+.theme-button,
+.tellme-button {
+  background-color: var(--color-btn-bg);
+  border: var(--border-btn);
 }
 
 input[type="text"] {
@@ -262,4 +263,36 @@ input:invalid {
   color: white;
   background-color: #900;
   margin: 0.5rem auto;
+}
+
+.people {
+  display: grid;
+  resize: both;
+  overflow: auto;
+  grid-template: repeat(1, 1fr) / repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Increasing font for smaller devices:
+- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#calculating-preferred-value-parameters-based-on-specific-starting-and-ending-points
+- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#using-negative-viewport-value-for-fluid-sizing
+*/
+h1 {
+  font-size: clamp(2rem, -20vw + 19.5rem, 12rem);
+}
+h2 {
+  font-size: clamp(1.5rem, -15vw + 14.625rem, 9rem);
+}
+label,
+p,
+input[type="text"],
+button,
+.error {
+  font-size: clamp(1rem, -10vw + 9.75rem, 6rem);
 }
