@@ -135,6 +135,7 @@ const Momo = (() => {
       const chatURL = process.env.BACKEND_SERVER + process.env.CHAT_ENDPOINT
       try {
         let response = await fetch(chatURL, {
+          mode: 'cors',
           method: "POST",
           body: JSON.stringify({
             messages,
