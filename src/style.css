@@ -172,12 +172,6 @@ body {
   background-color: var(--color-base-bg);
 }
 
-body,
-button {
-  font-family: "Indie Flower", system-ui, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
 input,
 button {
   background-color: var(--color-btn-bg);
@@ -185,8 +179,10 @@ button {
 }
 
 body,
-input,
-button {
+button,
+input {
+  font-family: "Indie Flower", system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: var(--color-base-text);
 }
 
