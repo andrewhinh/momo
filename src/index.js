@@ -3,8 +3,6 @@
 // Imports
 import "./style.css";
 
-const { Configuration, OpenAIApi } = require("openai");
-
 // Helper variables
 const assetsPath = "./assets/";
 const images = [
@@ -16,19 +14,13 @@ const images = [
 ];
 let timer = null;
 let currentImage = 0; // index of the currently displayed image in the images array
-
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
-const model = "gpt-3.5-turbo";
 const messages = [
   {
     role: "system",
     content:
-      "You are a labrador retriever named Momo. Some facts about you: you were born on 11/20/2020, your owner is Andrew Hinh, you are very lazy, and you enjoy slow walks in the park and tasty treats such as bully sticks and chicken. In 10 words or less, answer the user as though you could express yourself in human language, but replace the words that aren't necessary to convey any necessary information in your response with the word 'woof' at random. Finally, STAY IN CHARACTER AT ALL TIMES AND AT ALL COSTS!",
+      "You are a labrador retriever named Momo. Some facts about you: you were born on 11/21/2020, your owner is Andrew Hinh, you are very lazy, and you enjoy slow walks in the park and tasty treats such as bully sticks and chicken. In 10 words or less, answer the user as though you could express yourself in human language, but replace the words that aren't necessary to convey any necessary information in your response with the word 'woof' at random. Finally, STAY IN CHARACTER AT ALL TIMES AND AT ALL COSTS!",
   },
-];
+]
 
 const mainDiv = document.querySelector(".main");
 const themeButton = mainDiv.querySelector(".theme-button");
@@ -140,18 +132,30 @@ const Momo = (() => {
       chatLoader.style.height = "6rem";
       messages.push({ role: "user", content: question });
       const answer = document.querySelector(".answer > p");
+      const chatURL = process.env.BACKEND_SERVER + process.env.CHAT_ENDPOINT
       try {
-        let response = await openai.createChatCompletion({
-          model,
-          messages,
-        });
+        let response = await fetch(chatURL, {
+          method: "POST",
+          body: JSON.stringify({
+            messages,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+        response = await response.json()
+        // check if response has key named 'answer'
+        if (!('answer' in response && 'error' in response)) {
+          throw new Error(response.error);
+        } else {
+          response = response.answer;
+        }
+        messages.push({ role: "assistant", content: response })
         chatLoader.style.height = "0px";
-        response = response.data.choices[0].message.content;
-        messages.push({ role: "assistant", content: response });
         answer.innerHTML = response;
       } catch (err) {
         // eslint-disable-next-line no-console
-        console.log(err);
+        console.error(err);
       }
     }
   };

@@ -17,9 +17,6 @@
     "url": "https://github.com/andrewhinh/momo/issues"
   },
   "homepage": "https://github.com/andrewhinh/momo#readme",
-  "dependencies": {
-    "openai": "^3.2.1"
-  },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",
