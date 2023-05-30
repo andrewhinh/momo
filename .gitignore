@@ -131,3 +131,6 @@ out
 
 # VSCode settings
 .vscode/settings.json
+
+# Main.js (contains resolved env variables)
+dist/main.js

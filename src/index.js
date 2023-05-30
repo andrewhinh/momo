@@ -3,6 +3,8 @@
 // Imports
 import "./style.css";
 
+const { Configuration, OpenAIApi } = require("openai");
+
 // Helper variables
 const assetsPath = "./assets/";
 const images = [
@@ -15,16 +17,34 @@ const images = [
 let timer = null;
 let currentImage = 0; // index of the currently displayed image in the images array
 
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+const model = "gpt-3.5-turbo";
+const messages = [
+  {
+    role: "system",
+    content:
+      "You are a labrador retriever named Momo. Some facts about you: you were born on 11/20/2020, your owner is Andrew Hinh, you are very lazy, and you enjoy slow walks in the park and tasty treats such as bully sticks and chicken. In 10 words or less, answer the user as though you could express yourself in human language, but replace a quarter of the words in your response with the word 'woof' at random. Finally, STAY IN CHARACTER AT ALL TIMES AND AT ALL COSTS!",
+  },
+];
+
 const mainDiv = document.querySelector(".main");
 const themeButton = mainDiv.querySelector(".theme-button");
 const imageCarousel = mainDiv.querySelector(".image-carousel");
 const indicatorTray = document.querySelector(
   ".carousel-controls .indicator-tray"
 );
-const form = mainDiv.querySelector("form");
-const inputText = mainDiv.querySelector("#name");
-const inputTextError = document.querySelector("#name + p.error");
+const nameForm = mainDiv.querySelector(".name-form");
+const nameText = mainDiv.querySelector("#name");
+const nameTextError = document.querySelector("#name + p.error");
 const tellMeButton = mainDiv.querySelector(".tellme-button");
+const chatForm = mainDiv.querySelector(".chat-form");
+const chatText = mainDiv.querySelector("#chat");
+const chatLoader = mainDiv.querySelector(".loader");
+const chatTextError = document.querySelector("#chat + p.error");
+const hmmButton = mainDiv.querySelector(".hmm-button");
 
 // Helper functions
 function setTheme() {
@@ -76,8 +96,6 @@ function handleCarouselStep(direction) {
   updateImageTo(index);
 }
 
-const Person = (name) => ({ name });
-
 const Momo = (() => {
   const family = ["andrew", "ethan", "mom"];
   const sayHey = (name, isBored) => {
@@ -86,18 +104,17 @@ const Momo = (() => {
     }
     return `Hey ${name}!`;
   };
-  const greet = (person) => {
-    if (person.name.length !== 0) {
-      
+  const greet = (name) => {
+    if (name.length !== 0) {
       const peopleDiv = mainDiv.querySelector(".people");
       const personDiv = document.createElement("div");
       personDiv.classname = "person";
       const sayHi = document.createElement("p");
       const hiGif = document.createElement("video");
 
-      if (family.includes(person.name.toLowerCase())) {
+      if (family.includes(name.toLowerCase())) {
         sayHi.innerHTML = sayHey(
-          person.name[0].toUpperCase() + person.name.slice(1).toLowerCase(),
+          name[0].toUpperCase() + name.slice(1).toLowerCase(),
           true
         );
         hiGif.src = `${assetsPath}momo-bored.mp4`;
@@ -116,21 +133,47 @@ const Momo = (() => {
       personDiv.appendChild(sayHi);
       personDiv.appendChild(hiGif);
       peopleDiv.appendChild(personDiv);
-      mainDiv.appendChild(peopleDiv);
     }
   };
-  return { greet };
+  const chat = async (question) => {
+    if (question.length !== 0) {
+      chatLoader.style.height = "6rem";
+      messages.push({ role: "user", content: question });
+      const answer = document.querySelector(".answer > p");
+      try {
+        let response = await openai.createChatCompletion({
+          model,
+          messages,
+        });
+        chatLoader.style.height = "0px";
+        response = response.data.choices[0].message.content;
+        messages.push({ role: "assistant", content: response });
+        answer.innerHTML = response;
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
+      }
+    }
+  };
+  return { greet, chat };
 })();
 
-function showError() {
-  if (inputText.validity.valueMissing) {
+function showNameError() {
+  if (nameText.validity.valueMissing) {
     // If the field is empty,
     // display the following error message.
-    inputTextError.textContent = "WHAT'S YOUR NAME?";
+    nameTextError.textContent = "WHAT'S YOUR NAME?";
   }
 
   // Set the styling appropriately
-  inputTextError.className = "error active";
+  nameTextError.className = "error active";
+}
+
+function showChatError() {
+  if (chatText.validity.valueMissing) {
+    chatTextError.textContent = "EMPTINESS IS SADNESS";
+  }
+  chatTextError.className = "error active";
 }
 
 // Event listeners
@@ -171,50 +214,57 @@ document.addEventListener("DOMContentLoaded", () => {
   resetTimer();
 });
 
-// eslint-disable-next-line no-unused-vars
-inputText.addEventListener("input", (event) => {
-  // Each time the user types something, we check if the
-  // form fields are valid.
+themeButton.addEventListener("click", setTheme);
 
-  if (inputText.validity.valid) {
+// eslint-disable-next-line no-unused-vars
+nameText.addEventListener("input", (event) => {
+  // Each time the user types something, we check if the
+  // nameForm fields are valid.
+
+  if (nameText.validity.valid) {
     // In case there is an error message visible, if the field
     // is valid, we remove the error message.
-    inputTextError.textContent = ""; // Reset the content of the message
-    inputTextError.className = "error"; // Reset the visual state of the message
+    nameTextError.textContent = ""; // Reset the content of the message
+    nameTextError.className = "error"; // Reset the visual state of the message
   } else {
     // If there is still an error, show the correct error
-    showError();
+    showNameError();
   }
 });
 
-form.addEventListener("submit", (event) => {
-  // if the inputText field is valid, we let the form submit
-  if (!inputText.validity.valid) {
-    // If it isn't, we display an appropriate error message
-    showError();
+// eslint-disable-next-line no-unused-vars
+chatText.addEventListener("input", (event) => {
+  if (chatText.validity.valid) {
+    chatTextError.textContent = "";
+    chatTextError.className = "error";
+  } else {
+    showChatError();
   }
-  // Then we prevent the form from being sent by canceling the event
+});
+
+nameForm.addEventListener("submit", (event) => {
+  // if the nameText field is valid, we let the nameForm submit
+  if (!nameText.validity.valid) {
+    // If it isn't, we display an appropriate error message
+    showNameError();
+  }
+  // Then we prevent the nameForm from being sent by canceling the event
+  event.preventDefault();
+});
+
+chatForm.addEventListener("submit", (event) => {
+  if (!chatText.validity.valid) {
+    showChatError();
+  }
   event.preventDefault();
 });
 
 tellMeButton.addEventListener("click", () => {
-  const name = inputText.value;
-  const person = Person(name);
-  Momo.greet(person);
+  const name = nameText.value;
+  Momo.greet(name);
 });
 
-themeButton.addEventListener("click", setTheme);
-
-/*
-const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+hmmButton.addEventListener("click", () => {
+  const question = chatText.value;
+  Momo.chat(question);
 });
-const openai = new OpenAIApi(configuration);
-const response = await openai.createCompletion({
-  model: "text-davinci-003",
-  prompt: "Say this is a test",
-  temperature: 0,
-  max_tokens: 7,
-});
-*/
