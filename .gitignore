@@ -131,3 +131,6 @@ out
 
 # VSCode settings
 .vscode/settings.json
+
+# AWS EC2 Key
+momo-backend-key.pem
