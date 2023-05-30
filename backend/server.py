@@ -2,12 +2,14 @@ import os
 
 from dotenv import load_dotenv
 from flask import Flask, request
+from flask_cors import CORS
 import openai
 
 
 load_dotenv("../.env")
 openai.api_key = os.getenv("OPENAI_API_KEY")
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/", methods=["GET"])
