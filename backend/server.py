@@ -1,11 +1,19 @@
-import openai
-from flask import Flask, request
+import os
 
+from dotenv import load_dotenv
+from flask import Flask, request
+import openai
+
+
+load_dotenv("../.env")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 app = Flask(__name__)
+
 
 @app.route("/", methods=["GET"])
 def index():
     return {"message": "What you want?"}
+
 
 @app.route("/chat", methods=["POST"])
 def chat():
