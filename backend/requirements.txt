@@ -61,7 +61,7 @@ tensorboard-plugin-wit==1.8.1
 terminado==0.13.3
 testpath==0.6.0
 tomli==2.0.1
-torch==1.12.0
+torch==1.13.1
 tornado==5.1.1
 tqdm==4.64.1
 typing_extensions==4.1.1
