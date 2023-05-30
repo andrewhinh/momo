@@ -35,4 +35,3 @@ def chat():
       return {"answer": response}, 200
     except Exception:
       return {"error": "OpenAI failure"}, 500
-    
