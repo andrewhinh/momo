@@ -146,7 +146,7 @@ const Momo = (() => {
         })
         response = await response.json()
         // check if response has key named 'answer'
-        if (!('answer' in response && 'error' in response)) {
+        if (!('answer' in response) && ('error' in response)) {
           throw new Error(response.error);
         } else {
           response = response.answer;
