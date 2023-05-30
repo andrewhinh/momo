@@ -14,7 +14,7 @@ CORS(app)
 
 @app.route("/", methods=["GET"])
 def index():
-    return {"message": "What you want?"}
+    return "What you want?"
 
 
 @app.route("/chat", methods=["POST"])
