@@ -130,7 +130,7 @@ out
 .pnp.*
 
 # VSCode settings
-.vscode/settings.json
+.vscode/*
 
 # AWS EC2 Key
 momo-backend-key.pem
