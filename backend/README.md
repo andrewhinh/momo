@@ -11,11 +11,7 @@ A backend server for the website that implements a /chat endpoint.
     cd momo
     ```
 
-2. Using `.env.template` as reference, create a `.env` file with your [OpenAI API key](https://beta.openai.com/account/api-keys), and reactivate the conda environment:
-
-    ```bash
-    conda activate serverchat
-    ```
+2. Using `.env.template` as reference, create a `.env` file with your [OpenAI API key](https://beta.openai.com/account/api-keys).
 
 3. Install conda if necessary:
 
