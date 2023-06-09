@@ -132,5 +132,7 @@ out
 # VSCode settings
 .vscode/*
 
-# AWS EC2 Key
+# Serving files
 momo-backend-key.pem
+backend/pagekite.py
+backend/__pycache__/
