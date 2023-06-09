@@ -36,5 +36,5 @@ A backend server for the website that implements a /chat endpoint.
 5. Run the server:
 
     ```bash
-    python server.py
+    gunicorn -w 4 -b 0.0.0.0 'server:app'
     ```
