@@ -1,4 +1,4 @@
-# [Backend Server](https://momo112120.pagekite.me)
+# Backend Server
 
 A backend server for the website that implements a /chat endpoint.
 
