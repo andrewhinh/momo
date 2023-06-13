@@ -4,16 +4,7 @@ A backend server for the website that implements a /chat endpoint.
 
 ## Setup
 
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/andrewhinh/momo.git
-    cd momo
-    ```
-
-2. Using `.env.template` as reference, create a `.env` file with your [OpenAI API key](https://beta.openai.com/account/api-keys).
-
-3. Install conda if necessary:
+1. Install conda if necessary:
 
     ```bash
     # Install conda: https://conda.io/projects/conda/en/latest/user-guide/install/index.html#regular-installation
@@ -21,7 +12,14 @@ A backend server for the website that implements a /chat endpoint.
     # choco install make
     ```
 
-4. Create the conda environment locally:
+2. Clone the repository:
+
+    ```bash
+    git clone https://github.com/andrewhinh/momo.git
+    cd momo
+    ```
+
+3. Create the conda environment locally:
 
     ```bash
     cd backend
@@ -33,8 +31,11 @@ A backend server for the website that implements a /chat endpoint.
     # If on Windows, the last two lines probably won't work. Check out this guide for more info: https://datatofish.com/add-python-to-windows-path/
     ```
 
+4. Using `.env.template` as reference, create a `.env` file with your [OpenAI API key](https://beta.openai.com/account/api-keys).
+
 5. Run the server:
 
     ```bash
     gunicorn -w 4 -b 0.0.0.0 'server:app'
+    # Or `heroku local` if you have the Heroku CLI installed
     ```
