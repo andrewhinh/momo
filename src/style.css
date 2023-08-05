@@ -222,7 +222,14 @@ input:invalid {
     rgb(255, 105, 253)
   );
   border-radius: 50%;
+}
+
+.roll {
   animation: roll 2.5s infinite ease-in-out alternate;
+}
+
+.bounce {
+  animation: bounce 0.5s infinite ease-out alternate;
 }
 
 @keyframes roll {
@@ -231,6 +238,15 @@ input:invalid {
   }
   to {
     transform: translateX(10rem) rotate(359deg);
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(5rem);
+  }
+  to { 
+    transform: translateY(0rem);
   }
 }
 
@@ -329,7 +345,7 @@ button:hover {
 }
 
 .loader {
-  height: 0px;
+  visibility: hidden;
 }
 
 /* Increasing font for smaller devices:

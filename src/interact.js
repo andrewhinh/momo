@@ -15,7 +15,6 @@ function interactSetup() {
     const tellMeButton = document.querySelector(".tellme-button");
     const chatForm = document.querySelector(".chat-form");
     const chatText = document.querySelector("#chat");
-    const chatLoader = document.querySelector(".loader");
     const chatTextError = document.querySelector("#chat + p.error");
     const hmmButton = document.querySelector(".hmm-button");
 
@@ -61,9 +60,15 @@ function interactSetup() {
         };
         const chat = async (question) => {
             if (question.length !== 0) {
-                chatLoader.style.height = "6rem";
+                const answer = document.querySelector(".answer");
+                const chatLoader = document.querySelector(".loader");
+                answer.style.display = "none"; // remove answer from DOM
+                if (chatLoader.style.display === "none") { // if loader was removed by previous interaction
+                    chatLoader.style.display = "block";
+                }
+                chatLoader.style.visibility = "visible";  // show loader
                 messages.push({ role: "user", content: question });
-                const answer = document.querySelector(".answer > p");
+
                 const chatURL = process.env.BACKEND_SERVER + process.env.CHAT_ENDPOINT
                 try {
                     let response = await fetch(chatURL, {
@@ -84,8 +89,11 @@ function interactSetup() {
                         response = response.answer;
                     }
                     messages.push({ role: "assistant", content: response })
-                    chatLoader.style.height = "0px";
                     answer.innerHTML = response;
+                    chatLoader.style.display = "none";  // remove loader from DOM
+                    if (answer.style.display === "none") {  // if answer was removed by previous interaction
+                        answer.style.display = "block";
+                    }
                 } catch (err) {
                     // eslint-disable-next-line no-console
                     console.error(err);
