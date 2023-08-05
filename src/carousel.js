@@ -12,6 +12,7 @@ function carouselSetup() {
     ];
     let timer = null;
     let currentImage = 0; // index of the currently displayed image in the images array
+    let imgDirection = "left";
 
     const imageCarousel = document.querySelector(".image-carousel");
     const indicatorTray = document.querySelector(
@@ -29,14 +30,13 @@ function carouselSetup() {
         }, 2500); // 1000 = 1000ms = 1s
     }
 
-    function setImgAnimation(img, currentIdx, previousIdx = -1) {
-        if (previousIdx === -1) { // base case
-            // eslint-disable-next-line no-param-reassign
-            img.style.animation = 'moveLeft 2.5s ease-in-out forwards';
-        } else if (currentIdx % 2 === 0 && previousIdx % 2 !== 0) {
+    function setImgAnimation(img) {
+        if (imgDirection === "left") {
+            imgDirection = "right";
             // eslint-disable-next-line no-param-reassign
             img.style.animation = 'moveLeft 2.5s ease-in-out forwards';
         } else {
+            imgDirection = "left";
             // eslint-disable-next-line no-param-reassign
             img.style.animation = 'moveRight 2.5s ease-in-out forwards';
         }
@@ -54,7 +54,7 @@ function carouselSetup() {
         // eslint-disable-next-line no-unused-expressions
         img.offsetHeight; /* trigger reflow */
         img.style.animation = null;
-        setImgAnimation(img, currentImage, previousImage);
+        setImgAnimation(img);
 
         indicatorTray
             .querySelector(`.indicator:nth-child(${previousImage + 1})`)
@@ -81,7 +81,7 @@ function carouselSetup() {
         // eslint-disable-next-line prefer-destructuring
         // check if img.src is undefined
         img.src = images[currentImage];
-        setImgAnimation(img, currentImage);
+        setImgAnimation(img);
         imageCarousel.appendChild(img);
         images.forEach((_, index) => {
             const indicator = document.createElement("div");
