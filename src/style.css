@@ -213,6 +213,27 @@ input:invalid {
   gap: 1rem;
 }
 
+.ball {
+  width: 5rem;
+  height: 5rem;
+  background: radial-gradient(
+    at 30% 30%,
+    rgb(199, 219, 251),
+    rgb(255, 105, 253)
+  );
+  border-radius: 50%;
+  animation: roll 2.5s infinite ease-in-out alternate;
+}
+
+@keyframes roll {
+  from {
+    transform: translateX(-10rem) rotate(0deg);
+  }
+  to {
+    transform: translateX(10rem) rotate(359deg);
+  }
+}
+
 .carousel-controls,
 .indicator-tray,
 .image-carousel {
@@ -221,23 +242,41 @@ input:invalid {
   gap: 1rem;
 }
 
+@keyframes moveLeft {
+  from {
+    transform: translateX(10rem);
+  }
+  to {
+    transform: translateX(-10rem);
+  }
+}
+
+@keyframes moveRight {
+  from {
+    transform: translateX(-10rem);
+  }
+  to {
+    transform: translateX(10rem);
+  }
+}
+
 .arrow {
   width: 3rem;
   fill: var(--color-base-text);
+  transition: fill 0.01s ease-in-out;
 }
 
 .arrow:hover {
   fill: var(--color-btn-bg);
+  cursor: pointer;
 }
 
 .arrow.next > svg {
   transform: rotate(180deg);
 }
 
-button:hover,
-.indicator:not(.active):hover {
-  /* indicate clickable with highlight */
-  box-shadow: 0 0 3rem 1rem var(--border-color) inset;
+button:hover {
+  opacity: 0.6;
   cursor: pointer;
 }
 
@@ -247,12 +286,16 @@ button:hover,
   width: 3rem; /* Sets the width of the indicators */
   border-radius: 50%; /* Ensures the indicators are circular */
   background-color: var(--color-btn-bg); /* Sets the color of the indicators */
-  transition: opacity 0.5s ease-in-out; /* Cleaner transitions */
-  /*opacity: 0.5; /* Indicators default to semi-transparent and are revealed by class changing */
+  transition: background-color 0.01s ease-in-out;
 }
 
 .indicator.active {
   background-color: var(--color-base-text);
+}
+
+.indicator:not(.active):hover {
+  background-color: var(--border-color);
+  cursor: pointer;
 }
 
 .theme-button-container {
@@ -261,6 +304,7 @@ button:hover,
 
 .theme-button {
   margin-top: 1rem;
+  transition: opacity 0.01s ease-in-out;
 }
 
 .error {
