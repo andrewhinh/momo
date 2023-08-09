@@ -29,74 +29,73 @@ function interactSetup() {
         };
         const greet = (name) => {
             if (name.length !== 0) {
-                const peopleDiv = document.querySelector(".people");
-                const personDiv = document.createElement("div");
-                personDiv.classname = "person";
-                const sayHi = document.createElement("p");
-                const hiGif = document.createElement("video");
+                const people = document.querySelector(".people");
+                people.style.visibility = "visible";  // show people after being hidden in initial page load
+                const person = document.createElement("div");
+                person.classname = "person";
+                const title = document.createElement("p");
+                const video = document.createElement("video");
 
                 if (family.includes(name.toLowerCase())) {
-                    sayHi.innerHTML = sayHey(
+                    title.innerHTML = sayHey(
                         name[0].toUpperCase() + name.slice(1).toLowerCase(),
                         true
                     );
-                    hiGif.src = `${assetsPath}momo-bored.mp4`;
+                    video.src = `${assetsPath}momo-bored.mp4`;
                 } else {
-                    sayHi.innerHTML = sayHey("stranger", false);
-                    hiGif.src = `${assetsPath}momo-happy.mp4`;
+                    title.innerHTML = sayHey("stranger", false);
+                    video.src = `${assetsPath}momo-happy.mp4`;
                 }
 
-                hiGif.alt = "Momo Gif";
-                hiGif.autoplay = true;
-                hiGif.controls = true;
-                hiGif.loop = true;
-                hiGif.muted = true;
-                hiGif.type = "video/mp4";
+                video.alt = "Momo Gif";
+                video.autoplay = true;
+                video.controls = true;
+                video.loop = true;
+                video.muted = true;
+                video.type = "video/mp4";
 
-                personDiv.appendChild(sayHi);
-                personDiv.appendChild(hiGif);
-                peopleDiv.appendChild(personDiv);
+                person.appendChild(title);
+                person.appendChild(video);
+                people.appendChild(person);
             }
         };
         const chat = async (question) => {
             if (question.length !== 0) {
                 const answer = document.querySelector(".answer");
+                answer.style.visibility = "visible";  // show answer after being hidden in initial page load
                 const chatLoader = document.querySelector(".loader");
-                answer.style.display = "none"; // remove answer from DOM
+                chatLoader.style.visibility = "visible";  // show loader after being hidden in initial page load
+
+                answer.style.display = "none"; // remove answer from DOM so that loader appears under input box
                 if (chatLoader.style.display === "none") { // if loader was removed by previous interaction
                     chatLoader.style.display = "block";
                 }
-                chatLoader.style.visibility = "visible";  // show loader
-                messages.push({ role: "user", content: question });
 
+                messages.push({ role: "user", content: question });
                 const chatURL = process.env.BACKEND_SERVER + process.env.CHAT_ENDPOINT
-                try {
-                    let response = await fetch(chatURL, {
-                        mode: 'cors',
-                        method: "POST",
-                        body: JSON.stringify({
-                            messages,
-                        }),
-                        headers: {
-                            "Content-type": "application/json; charset=UTF-8",
-                        },
-                    })
-                    response = await response.json()
-                    // check if response has key named 'answer'
-                    if (!('answer' in response) && ('error' in response)) {
-                        throw new Error(response.error);
-                    } else {
-                        response = response.answer;
-                    }
-                    messages.push({ role: "assistant", content: response })
-                    answer.innerHTML = response;
-                    chatLoader.style.display = "none";  // remove loader from DOM
-                    if (answer.style.display === "none") {  // if answer was removed by previous interaction
-                        answer.style.display = "block";
-                    }
-                } catch (err) {
-                    // eslint-disable-next-line no-console
-                    console.error(err);
+                let response = await fetch(chatURL, {
+                    mode: 'cors',
+                    method: "POST",
+                    body: JSON.stringify({
+                        messages,
+                    }),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                    },
+                })
+                response = await response.json()
+                // check if response has key named 'answer'
+                if (!('answer' in response) && ('error' in response)) {
+                    throw new Error(response.error);
+                } else {
+                    response = response.answer;
+                }
+                messages.push({ role: "assistant", content: response })
+                answer.innerHTML = response;
+
+                chatLoader.style.display = "none";  // remove loader from DOM
+                if (answer.style.display === "none") {  // if answer was removed by previous interaction
+                    answer.style.display = "block";
                 }
             }
         };

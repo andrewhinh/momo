@@ -76,11 +76,26 @@ function carouselSetup() {
     }
 
     // Event listeners
+    document.querySelector(".previous").addEventListener("click", () => handleCarouselStep("previous"));
+
+    document.querySelector(".next").addEventListener("click", () => handleCarouselStep("next"));
+
+    document.querySelectorAll(".indicator").forEach((indicator, index) => {
+        indicator.addEventListener("click", () => updateImageTo(index));
+    });
+
+    window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+            handleCarouselStep("next");
+        } else if (event.key === "ArrowLeft") {
+            handleCarouselStep("previous");
+        }
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
         const img = document.createElement("img");
         // eslint-disable-next-line prefer-destructuring
-        // check if img.src is undefined
-        img.src = images[currentImage];
+        img.src = images[currentImage]; // check if img.src is undefined
         setImgAnimation(img);
         imageCarousel.appendChild(img);
         images.forEach((_, index) => {
@@ -91,26 +106,6 @@ function carouselSetup() {
             }
             indicatorTray.appendChild(indicator);
         });
-
-        document
-            .querySelector(".previous")
-            .addEventListener("click", () => handleCarouselStep("previous"));
-        document
-            .querySelector(".next")
-            .addEventListener("click", () => handleCarouselStep("next"));
-        window.addEventListener("keydown", (event) => {
-            if (event.key === "ArrowRight") {
-                handleCarouselStep("next");
-            } else if (event.key === "ArrowLeft") {
-                handleCarouselStep("previous");
-            }
-        });
-
-        const indicators = document.querySelectorAll(".indicator");
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener("click", () => updateImageTo(index));
-        });
-
         resetTimer();
     });
 }

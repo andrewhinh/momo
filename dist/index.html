@@ -16,16 +16,14 @@
         <span class="display-theme-name">Dark</span> Mode
       </button>
     </div>
-    <div>
-      <h1>Momo</h1>
-      <p>Loves eating animals that moo, allergic to those that oink</p>
-    </div>
+    <h1>Momo</h1>
+    <p>Loves eating animals that moo, allergic to those that oink</p>
     <div class="ball roll"></div>
     <div class="image-carousel"></div>
     <div class="carousel-controls">
       <div class="previous arrow">
         <svg version="1.1" class="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="-41.52 -41.52 498.19 498.19" xml:space="preserve">
+          viewBox="-41.52 -41.52 498.19 498.19" xml:space="preserve" tabindex='0'>
           <g class="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g class="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
           <g class="SVGRepo_iconCarrier">
@@ -42,7 +40,7 @@
       <div class="indicator-tray"></div>
       <div class="next arrow">
         <svg version="1.1" class="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="-41.52 -41.52 498.19 498.19" xml:space="preserve">
+          viewBox="-41.52 -41.52 498.19 498.19" xml:space="preserve" tabindex='0'>
           <g class="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g class="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
           <g class="SVGRepo_iconCarrier">
@@ -57,36 +55,30 @@
         </svg>
       </div>
     </div>
-    <div>
-      <form novalidate class="name-form">
-        <p>
-          <label for="name">
-            <p>Who you?</p>
-            <input type="text" id="name" name="name" placeholder="Andrew" required maxlength="750" />
-            <!--https://www.guinnessworldrecords.com/world-records/67285-longest-personal-name#:~:text=The%20longest%20personal%20name%20is,to%20Hubert%20Blaine%20Wolfeschlegelsteinhausenbergerdorff%20Sr.-->
-            <p class="error" aria-live="polite"></p>
-          </label>
-        </p>
-        <button class="tellme-button">Tell Me!</button>
-      </form>
-    </div>
-    <div class="people"></div>
-    <div>
-      <form novalidate class="chat-form">
-        <p>
-          <label for="chat">
-            <p>You want talk?</p>
-            <input type="text" id="chat" name="chat" placeholder="How old are you?" required />
-            <p class="error" aria-live="polite"></p>
-          </label>
-        </p>
-        <button class="hmm-button">Hmm</button>
-      </form>
-    </div>
-    <div>
-      <div class="ball bounce loader"></div>
-      <p class="answer"></p>
-    </div>
+    <form novalidate class="name-form">
+      <p>
+        <label for="name">
+          <p>Who you?</p>
+          <input type="text" id="name" name="name" placeholder="Andrew" required maxlength="750" />
+          <!--https://www.guinnessworldrecords.com/world-records/67285-longest-personal-name#:~:text=The%20longest%20personal%20name%20is,to%20Hubert%20Blaine%20Wolfeschlegelsteinhausenbergerdorff%20Sr.-->
+          <p class="error" aria-live="polite"></p>
+        </label>
+      </p>
+      <button class="tellme-button">Tell Me!</button>
+    </form>
+    <div class="people hidden"></div>
+    <form novalidate class="chat-form">
+      <p>
+        <label for="chat">
+          <p>You want talk?</p>
+          <input type="text" id="chat" name="chat" placeholder="How old are you?" required />
+          <p class="error" aria-live="polite"></p>
+        </label>
+      </p>
+      <button class="hmm-button">Hmm</button>
+    </form>
+    <div class="ball bounce loader hidden"></div>
+    <p class="answer hidden"></p>
   </div>
 </body>
 
