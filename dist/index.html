@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <header>
+  <div class="main">
     <div class="theme-button-container">
       <button type="button" class="theme-button">
         <span class="display-theme-name">Dark</span> Mode
@@ -20,8 +20,6 @@
       <h1>Momo</h1>
       <p>Loves eating animals that moo, allergic to those that oink</p>
     </div>
-  </header>
-  <main>
     <div class="ball roll"></div>
     <div class="image-carousel"></div>
     <div class="carousel-controls">
@@ -59,35 +57,37 @@
         </svg>
       </div>
     </div>
-  </main>
-  <aside>
-    <form novalidate class="name-form">
-      <p>
-        <label for="name">
-          <p>Who you?</p>
-          <input type="text" id="name" name="name" placeholder="Andrew" required maxlength="750" />
-          <!--https://www.guinnessworldrecords.com/world-records/67285-longest-personal-name#:~:text=The%20longest%20personal%20name%20is,to%20Hubert%20Blaine%20Wolfeschlegelsteinhausenbergerdorff%20Sr.-->
-          <p class="error" aria-live="polite"></p>
-        </label>
-      </p>
-      <button class="tellme-button">Tell Me!</button>
-    </form>
+    <div>
+      <form novalidate class="name-form">
+        <p>
+          <label for="name">
+            <p>Who you?</p>
+            <input type="text" id="name" name="name" placeholder="Andrew" required maxlength="750" />
+            <!--https://www.guinnessworldrecords.com/world-records/67285-longest-personal-name#:~:text=The%20longest%20personal%20name%20is,to%20Hubert%20Blaine%20Wolfeschlegelsteinhausenbergerdorff%20Sr.-->
+            <p class="error" aria-live="polite"></p>
+          </label>
+        </p>
+        <button class="tellme-button">Tell Me!</button>
+      </form>
+    </div>
     <div class="people"></div>
-    <form novalidate class="chat-form">
-      <p>
-        <label for="chat">
-          <p>You want talk?</p>
-          <input type="text" id="chat" name="chat" placeholder="How old are you?" required />
-          <p class="error" aria-live="polite"></p>
-        </label>
-      </p>
-      <button class="hmm-button">Hmm</button>
-    </form>
+    <div>
+      <form novalidate class="chat-form">
+        <p>
+          <label for="chat">
+            <p>You want talk?</p>
+            <input type="text" id="chat" name="chat" placeholder="How old are you?" required />
+            <p class="error" aria-live="polite"></p>
+          </label>
+        </p>
+        <button class="hmm-button">Hmm</button>
+      </form>
+    </div>
     <div>
       <div class="ball bounce loader"></div>
       <p class="answer"></p>
     </div>
-  </aside>
+  </div>
 </body>
 
 </html>

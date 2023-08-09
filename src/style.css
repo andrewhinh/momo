@@ -172,30 +172,24 @@ body {
   background-color: var(--color-base-bg);
 }
 
-body,
 input,
 button {
+  background-color: var(--color-btn-bg);
+  border: var(--border-btn);
+}
+
+body,
+button,
+input {
   font-family: "Indie Flower", system-ui, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: var(--color-base-text);
 }
 
-header {
-  margin: 1rem auto auto auto;
-}
-
-aside {
-  margin: auto auto 10rem auto;
-}
-
-header,
-main,
-aside {
-  max-width: min(95%, 1200px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+img,
+video {
+  object-fit: contain;
+  height: 400px;
 }
 
 input[type="text"] {
@@ -210,20 +204,13 @@ input:invalid {
   border: 3px dashed red;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
-input,
-button {
-  background-color: var(--color-btn-bg);
-  border: var(--border-btn);
-}
-
-img,
-video {
-  object-fit: contain;
-  height: 300px;
+.main {
+  margin: 100px auto;
+  max-width: min(95%, 1200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .ball {
@@ -297,10 +284,16 @@ video {
 
 .arrow:hover {
   fill: var(--color-btn-bg);
+  cursor: pointer;
 }
 
 .arrow.next > svg {
   transform: rotate(180deg);
+}
+
+button:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .indicator {
@@ -318,6 +311,7 @@ video {
 
 .indicator:not(.active):hover {
   background-color: var(--border-color);
+  cursor: pointer;
 }
 
 .theme-button-container {
@@ -327,10 +321,6 @@ video {
 .theme-button {
   margin-top: 1rem;
   transition: opacity 0.01s ease-in-out;
-}
-
-.theme-button:hover {
-  opacity: 0.5;
 }
 
 .error {
@@ -343,7 +333,7 @@ video {
   display: grid;
   resize: both;
   overflow: auto;
-  grid-template: repeat(1, 1fr) / repeat(auto-fit, minmax(300px, 1fr));
+  grid-template: repeat(1, 1fr) / repeat(auto-fit, minmax(400px, 1fr));
   border: var(--border-btn);
   gap: 1rem;
 }
