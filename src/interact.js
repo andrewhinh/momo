@@ -42,12 +42,13 @@ function interactSetup() {
                         true
                     );
                     video.src = `${assetsPath}momo-bored.mp4`;
+                    video.alt = "Video of Momo being bored";
                 } else {
                     title.innerHTML = sayHey("stranger", false);
                     video.src = `${assetsPath}momo-happy.mp4`;
+                    video.alt = "Video of Momo being happy";
                 }
 
-                video.alt = "Momo Gif";
                 video.autoplay = true;
                 video.controls = true;
                 video.loop = true;
@@ -116,7 +117,7 @@ function interactSetup() {
 
     function showChatError() {
         if (chatText.validity.valueMissing) {
-            chatTextError.textContent = "EMPTINESS IS SADNESS";
+            chatTextError.textContent = "WHAT WAS THAT?";
         }
         chatTextError.className = "error active";
     }
