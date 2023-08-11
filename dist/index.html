@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
   <title>Momo</title>
   <link rel="stylesheet" href="src/style.css" />
   <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
@@ -11,11 +11,9 @@
 
 <body>
   <div class="main">
-    <div class="theme-button-container">
-      <button type="button" class="theme-button">
-        <span class="display-theme-name">Dark</span> Mode
-      </button>
-    </div>
+    <button type="button" class="theme-button" aria-label="Theme Change Button">
+      <span class="display-theme-name">Dark</span> Mode
+    </button>
     <h1>Momo</h1>
     <p>Loves eating animals that moo, allergic to those that oink</p>
     <div class="ball roll"></div>
@@ -23,7 +21,7 @@
     <div class="carousel-controls">
       <div class="previous arrow">
         <svg version="1.1" class="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="-41.52 -41.52 498.19 498.19" xml:space="preserve" tabindex='0'>
+          viewBox="-41.52 -41.52 498.19 498.19" xml:space="preserve" tabindex='0' aria-label="Previous Image Arrow">
           <g class="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g class="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
           <g class="SVGRepo_iconCarrier">
@@ -40,7 +38,7 @@
       <div class="indicator-tray"></div>
       <div class="next arrow">
         <svg version="1.1" class="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="-41.52 -41.52 498.19 498.19" xml:space="preserve" tabindex='0'>
+          viewBox="-41.52 -41.52 498.19 498.19" xml:space="preserve" tabindex='0' aria-label="Next Image Arrow">
           <g class="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g class="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
           <g class="SVGRepo_iconCarrier">
@@ -55,27 +53,28 @@
         </svg>
       </div>
     </div>
-    <form novalidate class="name-form">
+    <form novalidate class="name-form" aria-label="Enter Name Form">
       <p>
         <label for="name">
           <p>Who you?</p>
-          <input type="text" id="name" name="name" placeholder="Andrew" required maxlength="750" />
+          <input type="text" id="name" name="name" placeholder="Andrew" required maxlength="750"
+            aria-label="Name Input" />
           <!--https://www.guinnessworldrecords.com/world-records/67285-longest-personal-name#:~:text=The%20longest%20personal%20name%20is,to%20Hubert%20Blaine%20Wolfeschlegelsteinhausenbergerdorff%20Sr.-->
           <p class="error" aria-live="polite"></p>
         </label>
       </p>
-      <button class="tellme-button">Tell Me!</button>
+      <button class="tellme-button" aria-label="Enter Name Button">Tell Me!</button>
     </form>
     <div class="people hidden"></div>
-    <form novalidate class="chat-form">
+    <form novalidate class="chat-form" aria-label="Start Chat Form">
       <p>
         <label for="chat">
           <p>You want talk?</p>
-          <input type="text" id="chat" name="chat" placeholder="How old are you?" required />
+          <input type="text" id="chat" name="chat" placeholder="How old are you?" required aria-label="Chat Input" />
           <p class="error" aria-live="polite"></p>
         </label>
       </p>
-      <button class="hmm-button">Hmm</button>
+      <button class="hmm-button" aria-label="Enter Text Button">Hmm</button>
     </form>
     <div class="ball bounce loader hidden"></div>
     <p class="answer hidden"></p>

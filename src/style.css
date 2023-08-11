@@ -188,8 +188,9 @@ input {
 
 img,
 video {
+  width: 200px;
+  height: auto;
   object-fit: contain;
-  height: 400px;
 }
 
 input[type="text"] {
@@ -204,6 +205,24 @@ input:invalid {
   border: 3px dashed red;
 }
 
+/* Increasing font for smaller devices:
+- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#calculating-preferred-value-parameters-based-on-specific-starting-and-ending-points
+- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#using-negative-viewport-value-for-fluid-sizing
+*/
+h1 {
+  font-size: clamp(2rem, -20vw + 19.5rem, 12rem);
+}
+h2 {
+  font-size: clamp(1.5rem, -15vw + 14.625rem, 9rem);
+}
+label,
+p,
+input[type="text"],
+button,
+.error {
+  font-size: clamp(1rem, -10vw + 9.75rem, 6rem);
+}
+
 .main {
   margin: 100px auto;
   max-width: min(95%, 1200px);
@@ -211,6 +230,12 @@ input:invalid {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.theme-button {
+  align-self: flex-end;
+  margin-top: 1rem;
+  transition: opacity 0.01s ease-in-out;
 }
 
 .ball {
@@ -314,19 +339,14 @@ button:hover {
   cursor: pointer;
 }
 
-.theme-button-container {
-  align-self: flex-end;
-}
-
-.theme-button {
-  margin-top: 1rem;
-  transition: opacity 0.01s ease-in-out;
-}
-
 .error {
   color: white;
   background-color: #900;
   margin: 0.5rem auto;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .people {
@@ -342,26 +362,4 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.hidden {
-  visibility: hidden;
-}
-
-/* Increasing font for smaller devices:
-- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#calculating-preferred-value-parameters-based-on-specific-starting-and-ending-points
-- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#using-negative-viewport-value-for-fluid-sizing
-*/
-h1 {
-  font-size: clamp(2rem, -20vw + 19.5rem, 12rem);
-}
-h2 {
-  font-size: clamp(1.5rem, -15vw + 14.625rem, 9rem);
-}
-label,
-p,
-input[type="text"],
-button,
-.error {
-  font-size: clamp(1rem, -10vw + 9.75rem, 6rem);
 }
