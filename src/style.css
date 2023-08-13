@@ -172,12 +172,6 @@ body {
   background-color: var(--color-base-bg);
 }
 
-input,
-button {
-  background-color: var(--color-btn-bg);
-  border: var(--border-btn);
-}
-
 body,
 button,
 input {
@@ -186,23 +180,13 @@ input {
   color: var(--color-base-text);
 }
 
-img,
-video {
-  width: 200px;
-  height: auto;
-  object-fit: contain;
-}
-
-input[type="text"] {
-  text-align: center;
-}
-
-input[type="text"]:focus {
-  border: 3px solid var(--border-btn);
-}
-
-input:invalid {
-  border: 3px dashed red;
+main {
+  margin: 100px auto;
+  max-width: min(95%, 1200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Increasing font for smaller devices:
@@ -223,13 +207,34 @@ button,
   font-size: clamp(1rem, -10vw + 9.75rem, 6rem);
 }
 
-.main {
-  margin: 100px auto;
-  max-width: min(95%, 1200px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+img,
+video {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+input,
+button {
+  background-color: var(--color-btn-bg);
+  border: var(--border-btn);
+}
+
+button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  text-align: center;
+}
+
+input[type="text"]:focus {
+  border: 3px solid var(--border-btn);
+}
+
+input:invalid {
+  border: 3px dashed red;
 }
 
 .theme-button {
@@ -283,6 +288,18 @@ button,
   gap: 1rem;
 }
 
+.image-carousel > img {
+  display: none; /* Hide all images by default */
+}
+
+.moving-left {
+  animation: moveLeft 2.5s ease-in-out forwards;
+}
+
+.moving-right {
+  animation: moveRight 2.5s ease-in-out forwards;
+}
+
 @keyframes moveLeft {
   from {
     transform: translateX(10rem);
@@ -316,11 +333,6 @@ button,
   transform: rotate(180deg);
 }
 
-button:hover {
-  opacity: 0.6;
-  cursor: pointer;
-}
-
 .indicator {
   display: inline-block; /* Ensures the indicators are on the same line */
   height: 3rem; /* Sets the height of the indicators */
@@ -351,10 +363,10 @@ button:hover {
 
 .people {
   display: grid;
-  resize: both;
+  resize: none;
   overflow: auto;
   grid-template: repeat(1, 1fr) / repeat(auto-fit, minmax(400px, 1fr));
-  border: var(--border-btn);
+  border: 0;
   gap: 1rem;
 }
 

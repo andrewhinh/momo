@@ -10,9 +10,9 @@ function carouselSetup() {
         `${assetsPath}3.jpg`,
         `${assetsPath}4.jpg`,
     ];
+
     let timer = null;
-    let currentImage = 0; // index of the currently displayed image in the images array
-    let imgDirection = "left";
+    let curImgIdx = 0; // index of the currently displayed image in the images array
 
     const imageCarousel = document.querySelector(".image-carousel");
     const indicatorTray = document.querySelector(
@@ -26,42 +26,33 @@ function carouselSetup() {
         }
         // Set a new timer
         timer = setTimeout(() => {
-            updateImageTo((currentImage + 1) % images.length);
+            updateImageTo((curImgIdx + 1) % images.length);
         }, 2500); // 1000 = 1000ms = 1s
     }
 
-    function setImgAnimation(img) {
-        if (imgDirection === "left") {
-            imgDirection = "right";
-            // eslint-disable-next-line no-param-reassign
-            img.style.animation = 'moveLeft 2.5s ease-in-out forwards';
-        } else {
-            imgDirection = "left";
-            // eslint-disable-next-line no-param-reassign
-            img.style.animation = 'moveRight 2.5s ease-in-out forwards';
-        }
-    }
-
     function updateImageTo(index) {
-        const previousImage = currentImage;
-        currentImage = index;
+        const prevImgIdx = curImgIdx;
+        curImgIdx = index;
 
-        const img = document.querySelector(`.image-carousel`).firstChild;
-        // eslint-disable-next-line prefer-destructuring
-        img.src = images[currentImage];
+        const prevImg = imageCarousel.querySelector(`img:nth-child(${prevImgIdx + 1})`);
+        const curImg = imageCarousel.querySelector(`img:nth-child(${curImgIdx + 1})`);
 
-        img.style.animation = 'none';
-        // eslint-disable-next-line no-unused-expressions
-        img.offsetHeight; /* trigger reflow */
-        img.style.animation = null;
-        setImgAnimation(img);
+        prevImg.style.display = "none";
+        curImg.style.display = "block";
+        if (prevImg.classList.contains("moving-left")) {
+            prevImg.classList.remove("moving-left");
+            curImg.classList.add("moving-right");
+        } else {
+            prevImg.classList.remove("moving-right");
+            curImg.classList.add("moving-left");
+        }
 
         indicatorTray
-            .querySelector(`.indicator:nth-child(${previousImage + 1})`)
+            .querySelector(`.indicator:nth-child(${prevImgIdx + 1})`)
             .classList.remove("active");
 
         indicatorTray
-            .querySelector(`.indicator:nth-child(${currentImage + 1})`)
+            .querySelector(`.indicator:nth-child(${curImgIdx + 1})`)
             .classList.add("active");
 
         resetTimer(); // reset the timer whenever the image is updated
@@ -70,8 +61,8 @@ function carouselSetup() {
     function handleCarouselStep(direction) {
         const index =
             direction === "next"
-                ? (currentImage + 1) % images.length
-                : (currentImage - 1 + images.length) % images.length;
+                ? (curImgIdx + 1) % images.length
+                : (curImgIdx - 1 + images.length) % images.length;
         updateImageTo(index);
     }
 
@@ -80,9 +71,6 @@ function carouselSetup() {
 
     document.querySelector(".next").addEventListener("click", () => handleCarouselStep("next"));
 
-    document.querySelectorAll(".indicator").forEach((indicator, index) => {
-        indicator.addEventListener("click", () => updateImageTo(index));
-    });
 
     window.addEventListener("keydown", (event) => {
         if (event.key === "ArrowRight") {
@@ -93,18 +81,25 @@ function carouselSetup() {
     });
 
     document.addEventListener("DOMContentLoaded", () => {
-        const img = document.createElement("img");
-        // eslint-disable-next-line prefer-destructuring
-        img.src = images[currentImage]; // check if img.src is undefined
-        setImgAnimation(img);
-        imageCarousel.appendChild(img);
         images.forEach((_, index) => {
+            const img = document.createElement("img");
+            img.src = images[index]; // check if img.src is undefined
+
             const indicator = document.createElement("div");
             indicator.classList.add("indicator");
+
             if (index === 0) {
+                img.style.display = "block";
+                img.classList.add("moving-left");
                 indicator.classList.add("active");
             }
+
+            imageCarousel.appendChild(img);
             indicatorTray.appendChild(indicator);
+        });
+
+        document.querySelectorAll(".indicator").forEach((indicator, index) => {
+            indicator.addEventListener("click", () => updateImageTo(index));
         });
         resetTimer();
     });
