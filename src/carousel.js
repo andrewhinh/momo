@@ -27,7 +27,7 @@ function carouselSetup() {
         // Set a new timer
         timer = setTimeout(() => {
             updateImageTo((curImgIdx + 1) % images.length);
-        }, 2500); // 1000 = 1000ms = 1s
+        }, 1000); // 1000 = 1000ms = 1s
     }
 
     function updateImageTo(index) {

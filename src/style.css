@@ -180,14 +180,24 @@ input {
   color: var(--color-base-text);
 }
 
+main,
+.people {
+  width: min(90%, 1000px);
+}
+
 main {
-  margin: 5rem auto;
-  max-width: min(90%, 1000px);
+  margin: 1rem auto 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 h1 {
@@ -254,7 +264,7 @@ input:invalid {
 }
 
 .roll {
-  animation: roll 2.5s infinite ease-in-out alternate;
+  animation: roll 1s infinite ease-in-out alternate;
 }
 
 .bounce {
@@ -292,11 +302,11 @@ input:invalid {
 }
 
 .moving-left {
-  animation: moveLeft 2.5s ease-in-out forwards;
+  animation: moveLeft 1s ease-in-out forwards;
 }
 
 .moving-right {
-  animation: moveRight 2.5s ease-in-out forwards;
+  animation: moveRight 1s ease-in-out forwards;
 }
 
 @keyframes moveLeft {
@@ -364,7 +374,7 @@ input:invalid {
   display: grid;
   resize: none;
   overflow: auto;
-  grid-template: repeat(1, 1fr) / repeat(auto-fit, minmax(400px, 1fr));
+  grid-template: repeat(1, 1fr) / repeat(auto-fit, minmax(10rem, 1fr));
   border: 0;
   gap: 1rem;
 }
@@ -373,4 +383,5 @@ input:invalid {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
