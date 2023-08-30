@@ -181,35 +181,34 @@ input {
 }
 
 main {
-  margin: 100px auto;
-  max-width: min(95%, 1200px);
+  margin: 5rem auto;
+  max-width: min(90%, 1000px);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
 }
 
-/* Increasing font for smaller devices:
-- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#calculating-preferred-value-parameters-based-on-specific-starting-and-ending-points
-- https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/#using-negative-viewport-value-for-fluid-sizing
-*/
 h1 {
-  font-size: clamp(2rem, -20vw + 19.5rem, 12rem);
+  font-size: 3rem;
 }
+
 h2 {
-  font-size: clamp(1.5rem, -15vw + 14.625rem, 9rem);
+  font-size: 2rem;
 }
+
 label,
 p,
 input[type="text"],
 button,
 .error {
-  font-size: clamp(1rem, -10vw + 9.75rem, 6rem);
+  font-size: 1.5rem;
 }
 
 img,
 video {
-  width: 200px;
+  width: 10rem;
   height: auto;
   object-fit: contain;
 }
@@ -221,7 +220,7 @@ button {
 }
 
 button:hover {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: pointer;
 }
 
@@ -239,13 +238,13 @@ input:invalid {
 
 .theme-button {
   align-self: flex-end;
-  margin-top: 1rem;
+  margin: 1rem 1rem 0 0;
   transition: opacity 0.01s ease-in-out;
 }
 
 .ball {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   background: radial-gradient(
     at 30% 30%,
     rgb(199, 219, 251),
@@ -264,19 +263,19 @@ input:invalid {
 
 @keyframes roll {
   from {
-    transform: translateX(-10rem) rotate(0deg);
+    transform: translateX(-100%) rotate(0deg);
   }
   to {
-    transform: translateX(10rem) rotate(359deg);
+    transform: translateX(100%) rotate(359deg);
   }
 }
 
 @keyframes bounce {
   from {
-    transform: translateY(5rem);
+    transform: translateY(100%);
   }
   to {
-    transform: translateY(0rem);
+    transform: translateY(0%);
   }
 }
 
@@ -302,24 +301,24 @@ input:invalid {
 
 @keyframes moveLeft {
   from {
-    transform: translateX(10rem);
+    transform: translateX(25%);
   }
   to {
-    transform: translateX(-10rem);
+    transform: translateX(-25%);
   }
 }
 
 @keyframes moveRight {
   from {
-    transform: translateX(-10rem);
+    transform: translateX(-25%);
   }
   to {
-    transform: translateX(10rem);
+    transform: translateX(25%);
   }
 }
 
 .arrow {
-  width: 3rem;
+  width: 2rem;
   fill: var(--color-base-text);
   transition: fill 0.01s ease-in-out;
 }
@@ -335,8 +334,8 @@ input:invalid {
 
 .indicator {
   display: inline-block; /* Ensures the indicators are on the same line */
-  height: 3rem; /* Sets the height of the indicators */
-  width: 3rem; /* Sets the width of the indicators */
+  height: 2rem; /* Sets the height of the indicators */
+  width: 2rem; /* Sets the width of the indicators */
   border-radius: 50%; /* Ensures the indicators are circular */
   background-color: var(--color-btn-bg); /* Sets the color of the indicators */
   transition: background-color 0.01s ease-in-out;
@@ -354,7 +353,7 @@ input:invalid {
 .error {
   color: white;
   background-color: #900;
-  margin: 0.5rem auto;
+  margin: 3px auto;
 }
 
 .hidden {
