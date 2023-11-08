@@ -24,7 +24,7 @@ A backend server for the website that implements a /chat endpoint.
     ```bash
     cd backend
     conda env update --prune -f environment.yml
-    conda activate momo-backend
+    conda activate momo
     pip install -r requirements.txt
     export PYTHONPATH=.
     echo "export PYTHONPATH=.:$PYTHONPATH" >> ~/.bashrc (or ~/.zshrc)
@@ -37,5 +37,4 @@ A backend server for the website that implements a /chat endpoint.
 
     ```bash
     gunicorn -w 4 -b 0.0.0.0 'server:app'
-    # Or `heroku local` if you have the Heroku CLI installed
     ```

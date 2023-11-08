@@ -6,7 +6,7 @@ from flask_cors import CORS
 import openai
 
 
-load_dotenv("../.env")
+load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 app = Flask(__name__)
 CORS(app)
@@ -29,9 +29,9 @@ def chat():
     
     try:
       response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-1106",
         messages=messages
-      )['choices'][0]['message']['content']
+      ).choices[0].message.content
       if not response:
         raise Exception
       return {"answer": response}, 200

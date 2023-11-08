@@ -1,4 +1,4 @@
-name: momo-backend
+name: momo
 channels:
   - defaults
   - conda-forge

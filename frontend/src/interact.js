@@ -73,7 +73,7 @@ function interactSetup() {
                 }
 
                 messages.push({ role: "user", content: question });
-                const chatURL = process.env.BACKEND_SERVER + process.env.CHAT_ENDPOINT
+                const chatURL = `${process.env.BACKEND_SERVER  }/chat`
                 let response = await fetch(chatURL, {
                     mode: 'cors',
                     method: "POST",
