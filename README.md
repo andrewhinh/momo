@@ -2,4 +2,4 @@
 
 Talk with Momo
 
-Check out README.md in backend folder for more information.
+Check out the README.md in the sub-folders for more information.
