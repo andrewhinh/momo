@@ -6,7 +6,7 @@
 
     ```bash
     git clone https://github.com/andrewhinh/momo.git
-    cd momo
+    cd momo/frontend
     ```
 
 2. Install node packages:
@@ -35,4 +35,12 @@ To create a production build:
 
 ```bash
 npm run build
+```
+
+To push to GH pages:
+
+```bash
+cd ..
+git subtree push --prefix frontend/dist origin gh-pages
+cd frontend
 ```
