@@ -131,8 +131,3 @@ out
 
 # VSCode settings
 .vscode/*
-
-# Serving files
-momo-backend-key.pem
-backend/pagekite.py
-backend/__pycache__/
